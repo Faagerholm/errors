@@ -3,8 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-
-	"go.uber.org/zap/zapcore"
 )
 
 // Op is an operation that caused an error.
@@ -30,6 +28,17 @@ const (
 	Internal
 )
 
+// Level represents the severity of the error.
+type Level uint8
+
+const (
+	InfoLevel Level = iota
+	WarnLevel
+	ErrorLevel
+	PanicLevel
+	FatalLevel
+)
+
 func (k Kind) String() string {
 	switch k {
 	case NotFound:
@@ -53,7 +62,7 @@ type Error struct {
 	Op       Op    // Operation that caused the error
 	Kind     Kind  // Kind of error
 	Err      error // Wrapped error
-	Severity zapcore.Level
+	Severity Level
 	// application specific data
 }
 
@@ -78,7 +87,7 @@ func New(args ...interface{}) error {
 			// Make a copy
 			copy := *arg
 			e.Err = &copy
-		case zapcore.Level:
+		case Level:
 			e.Severity = arg
 		default:
 			panic(fmt.Sprintf("unknown error argument: %v", arg))
