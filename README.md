@@ -3,13 +3,16 @@
 a go package for "custom errors".
 
 This is mainly used as a reference and could easily be copied to your project if you'd like to use it. 
-But it also works as a package if you for some reason do not want to copy the file and create a dependency of it. 
+But it also works as a package if you for some reason do not want to copy the file and create a dependency of it.  
+
+_heavily inspired by_ [upspin](https://upspin.googlesource.com/upspin/)
+
+Read more about it [here](https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html)
 
 ## How to use
 
-Copy the error.go file content and modify the struct to match your environment (recommended).
-
-the errors can easily be used in your projects to simply standardize the error messages.
+Copy the error.go file content and modify the struct to match your environment (recommended).  
+The errors can easily be used in your projects to simply standardize the error messages.
 
 ```go
 
